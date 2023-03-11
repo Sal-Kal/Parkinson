@@ -6,4 +6,6 @@
 
 - The script `Classifier.py` requires the path of the image that is to be classified to be handcoded within the script on line number `20`.
 
-- Once the image is classified, the script expects an input from keyboard to end execution.
+- Executing the script: `python Classifier.py` or `python3 Classifier.py`
+
+- Once the image is classified, the image which was read by the classifier is displayed in a separate window after which the script expects an input from keyboard to end execution.
