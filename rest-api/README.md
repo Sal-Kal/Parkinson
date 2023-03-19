@@ -24,8 +24,8 @@ Body:
 {
   "status": "string",
   "response": {
-          "detected": "string",
-          "value": "float",
+          "shape": "string",
+          "score": "float",
           "prediction": "string",
           "image": "base64 encoded string"
       }

@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Lota Grotesque Thin';
+    src: url('./fonts/Lota\ Grotesque\ Thin.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Lota Grotesque Regular';
+    src: url('./fonts/Lota\ Grotesque\ Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Lota Grotesque Bold';
+    src: url('./fonts/Lota\ Grotesque\ Bold.otf') format('opentype');
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    /* background-color: #042825; */
+    background-color: whitesmoke;
+    color: #042825;
+}
+
+.header {
+    font-family: 'Lota Grotesque Regular', sans-serif;
+    font-size: 3.5rem;
+    text-align: left;
+    margin-inline: auto;
+    margin-block: 1rem;
+    line-height: 4.7rem;
+    letter-spacing: -0.1rem;
+    width: min(90%, 950px);
+
+}
+
+.info {
+    font-family: 'Lota Grotesque Regular', sans-serif;
+    font-size: 1.7rem;
+    margin-inline: auto;
+    margin-block: 1rem;
+    width: min(90%, 950px);
+    text-align: justify;
+}
+
+
+.upload-box{
+    margin-inline: auto;
+    font-family: 'Lota Grotesque Regular', sans-serif;
+    font-size: 2rem;
+    border-radius: 15px;
+    border: 2px dashed #042825;
+    width: 100%;
+    text-align: center;
+}
+
+#form-file-upload {
+    height: 16rem;
+    width: 100%;
+}
+
+#label-file-upload {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.upload-button {
+    cursor: pointer;
+    font-family: 'Lota Grotesque Regular', sans-serif;
+    font-size: 1rem;
+    background-color: whitesmoke;
+    border: 2px solid #042825;
+    border-radius: 10px;
+    transition-duration: 300ms;
+    height: 3em;
+    width: 5rem;
+}
+
+.upload-button:hover {
+    color: whitesmoke;
+    background-color: #042825;
+}
+
+#drag-file-element {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+}
+
+#input-file-upload {
+  display: none;
+}
+
+#drawing{
+    object-fit: contain;
+    border-radius: 15px;
+}

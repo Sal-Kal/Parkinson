@@ -89,13 +89,17 @@ def classify(request):
         if sow > 0.5:
             # Wave
             prediction = wave_model.predict(np.expand_dims(processed/255,0))
-            response["detected"] = "Wave"
+            response["shape"] = "Wave"
         else:
             # Spiral
             prediction = spiral_model.predict(np.expand_dims(processed/255,0))
-            response["detected"] = "Spiral"
+            response["shape"] = "Spiral"
 
-        response["value"] = float(prediction[0][0])
+        score = float(prediction[0][0])
+        score = score * 100
+        score = 100 - score
+
+        response["score"] = "{:.1f}".format(score)
 
         if prediction > 0.5:
             response["prediction"] = "Parkinson"
