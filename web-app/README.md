@@ -1,0 +1,3 @@
+- Installing Requirements: `npm i`
+- Starting the server: `npm start`
+- The server url: `http://127.0.0.1:3000`

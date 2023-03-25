@@ -16,7 +16,7 @@ wave_height = 256
 wave_width = 512
 
 # Reading the Image
-drawing = cv.imread('./test/test_4.jpg')
+drawing = cv.imread('./test/something.png')
 
 # Calculating the Center of the Image
 center = (drawing.shape[1]/2, drawing.shape[0]/2)

@@ -106,7 +106,11 @@ def classify(request):
         else:
             response["prediction"] = "Healthy"
 
-        _, buffer = cv.imencode('.png', crop_img)
+        crop_img = cv.cvtColor(crop_img, cv.COLOR_BGR2GRAY)
+
+        _, thresh_img = cv.threshold(crop_img, 150, 255, cv.THRESH_BINARY+cv.THRESH_OTSU)
+
+        _, buffer = cv.imencode('.png', thresh_img)
         encoded = base64.b64encode(buffer).decode('utf-8')
 
         response["image"] = encoded

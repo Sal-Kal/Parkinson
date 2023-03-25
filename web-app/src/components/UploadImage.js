@@ -1,16 +1,28 @@
 import React from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import Spinner from "react-bootstrap/Spinner";
 import "react-circular-progressbar/dist/styles.css";
+import Spinner from "react-bootstrap/Spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function UploadImage() {
-  // drag state
+  // All States
   const [dragActive, setDragActive] = React.useState(false);
   const [boxState, setBoxState] = React.useState(false);
-  const [result, setResult] = React.useState({});
+  const [result, setResult] = React.useState({ score: 0 });
   const [loading, setLoading] = React.useState(false);
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prevCount) => {
+        const diff = result.score - prevCount;
+        const increment = diff / 20; // Increase count by 5% of the difference
+        return prevCount + increment;
+      });
+    }, 1);
+    return () => clearInterval(interval);
+  }, [result.score]);
 
   const handleFile = async (file) => {
     setLoading(true);
@@ -19,8 +31,11 @@ export default function UploadImage() {
     let url = "http://127.0.0.1:8000/classify/";
     try {
       await axios.post(url, formData).then((res) => {
-        setResult(res.data.response);
         setBoxState(true);
+        console.log(res.data.response);
+        setTimeout(() => {
+          setResult(res.data.response);
+        }, 500);
       });
     } catch (err) {
       console.log(err);
@@ -64,6 +79,8 @@ export default function UploadImage() {
   const resetUploadBox = () => {
     setBoxState(false);
     setLoading(false);
+    setResult({ score: 0 });
+    setCount(0);
   };
 
   if (!boxState) {
@@ -105,26 +122,36 @@ export default function UploadImage() {
   } else {
     return (
       <div className="upload-box">
-        <div className="result-box">
+        <div className="result-row">
           <img
             src={`data:image/png;base64,${result.image}`}
-            alt="spiral-or-wave"
+            alt=""
             id="drawing"
           />
-          <CircularProgressbar
-            value={result.score}
-            text={result.score}
-            styles={buildStyles({
-              pathTransition: 2,
-              strokeLinecap: "butt",
-              pathColor: "#042825",
-              textColor: "#042825",
-              trailColor: "rgba(0,0,0,0)",
-              backgroundColor: "#3e98c7",
-            })}
-          />
-          <p>{result.shape}</p>
-          <p>{result.prediction}</p>
+          <div className="progress-bar">
+            <CircularProgressbar
+              value={result.score}
+              text={count === 0 ? "" : `${count.toFixed(1)}%`}
+              strokeWidth={5}
+              styles={buildStyles({
+                pathTransition: 2,
+                pathColor: "#042825",
+                textColor: "#042825",
+                trailColor: "rgba(0,0,0,0)",
+                backgroundColor: "#3e98c7",
+              })}
+            />
+          </div>
+        </div>
+        <div className="result-column">
+          <p>
+            <b>Detected: </b>
+            {result.shape}
+          </p>
+          <p>
+            <b>Prediction: </b>
+            {result.prediction}
+          </p>
           <button className="upload-button" onClick={resetUploadBox}>
             Upload Another
           </button>

@@ -51,8 +51,11 @@ body {
     border: 2px dashed #042825;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
+    gap: 1rem;
 }
 
 #form-file-upload,
@@ -81,12 +84,12 @@ body {
     cursor: pointer;
     font-family: 'Lota Grotesque Regular', sans-serif;
     font-size: 1rem;
-    background-color: whitesmoke;
+    background-color: white;
     border: 2px solid #042825;
     border-radius: 10px;
     transition-duration: 300ms;
-    height: 3em;
-    width: 5rem;
+    height: 3.7em;
+    padding-inline: 1.5rem;
     margin-inline: auto;
 }
 
@@ -104,12 +107,26 @@ body {
     border-radius: 15px;
 }
 
-.result-box{
-    height: 25rem;
+.result-row{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.progress-bar{
+    height: 10rem;
+    width: 10rem;
+    margin-block: auto;
+}
+
+.result-column{
     display: flex;
     flex-direction: column;
-    text-align: center;
     justify-content: space-between;
-    gap: 1rem;
-    margin-block: 2rem;
+    margin: auto;
+    width: 100%;
+    text-align: center;
 }
