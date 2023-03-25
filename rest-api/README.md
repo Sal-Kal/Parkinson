@@ -32,9 +32,9 @@ Body:
 }
 ```
 
-- The `response.detected` value signifies if the model detected a spiral or a wave.
+- The `response.shape` value signifies if the model detected a spiral or a wave.
 
-- The `response.value` value signifies the predicted value, if the value is more than `0.5` then the person has parkinson's disease.
+- The `response.score` value signifies the predicted score, if the value is less than `50` then the person has parkinson's disease.
 
 - The `response.prediction` value signifies if the the person is healthy or has parkinson's disease.
 
