@@ -111,7 +111,6 @@ def classify(request):
 
         response["image"] = encoded
 
-
         return JsonResponse({
             "status" : "success",
             "response" : response

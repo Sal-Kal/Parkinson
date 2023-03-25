@@ -1,14 +1,15 @@
 import './App.css';
 import Header from './components/Header.js';
 import Info from './components/Info';
+import 'react-circular-progressbar/dist/styles.css';
 
 function App() {
-  return (
-    <div className="App">
-        <Header />
-        <Info />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header />
+            <Info />
+        </div>
+    );
 }
 
 export default App;
