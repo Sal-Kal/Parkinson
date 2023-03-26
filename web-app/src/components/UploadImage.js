@@ -24,6 +24,7 @@ export default function UploadImage() {
     return () => clearInterval(interval);
   }, [result.score]);
 
+  // Axios Post Request to the Backend
   const handleFile = async (file) => {
     setLoading(true);
     const formData = new FormData();

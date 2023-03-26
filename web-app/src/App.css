@@ -105,6 +105,8 @@ body {
 #drawing{
     object-fit: contain;
     border-radius: 15px;
+    width: 12rem;
+    height: 12rem;
 }
 
 .result-row{
