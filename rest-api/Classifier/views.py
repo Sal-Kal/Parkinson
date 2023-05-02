@@ -7,7 +7,6 @@ from tensorflow.keras.models import load_model
 import base64
 
 # Loading the ml model
-sow_model = load_model('./ml-model/sow.h5')
 spiral_model = load_model('./ml-model/spiral.h5')
 wave_model = load_model('./ml-model/wave.h5')
 
@@ -18,12 +17,26 @@ spiral_width = 256
 wave_height = 256
 wave_width = 512
 
-
 @api_view(['POST'])
 def classify(request):
     try:
         response = {}
         image = request.FILES['image'].read()
+
+        if "bg" in request.data:
+            bg = request.data["bg"]
+            bg = bg.split()
+            bg = [int(x) for x in bg]
+        else:
+            bg = [0, 0, 0]
+
+        if "fg" in request.data:
+            fg = request.data["fg"]
+            fg = fg.split()
+            fg = [int(x) for x in fg]
+        else:
+            fg = [255, 255, 255]
+
         nparr = np.frombuffer(image, np.uint8)
         drawing = cv.imdecode(nparr, cv.IMREAD_COLOR)
 
@@ -78,22 +91,21 @@ def classify(request):
         # Checking if the image is more likely to be a spiral or a wave
         if aspect_ratio >= 1.7:
             crop_img = cv.resize(crop_img, (wave_width, wave_height))
+            is_spiral = 0
         else:
             crop_img = cv.resize(crop_img, (spiral_width, spiral_height))
+            is_spiral = 1
 
         processed = tf.image.resize(cv.cvtColor(crop_img, cv.COLOR_BGR2RGB), (256, 256))
 
-
-        sow = sow_model.predict(np.expand_dims(processed/255, 0))
-
-        if sow > 0.5:
-            # Wave
-            prediction = wave_model.predict(np.expand_dims(processed/255,0))
-            response["shape"] = "Wave"
-        else:
+        if (is_spiral == 1):
             # Spiral
             prediction = spiral_model.predict(np.expand_dims(processed/255,0))
             response["shape"] = "Spiral"
+        else:
+            # Wave
+            prediction = wave_model.predict(np.expand_dims(processed/255,0))
+            response["shape"] = "Wave"
 
         score = float(prediction[0][0])
         score = score * 100
@@ -110,7 +122,11 @@ def classify(request):
 
         _, thresh_img = cv.threshold(crop_img, 150, 255, cv.THRESH_BINARY+cv.THRESH_OTSU)
 
-        _, buffer = cv.imencode('.png', thresh_img)
+        img_color = np.zeros((thresh_img.shape[0], thresh_img.shape[1], 3), dtype=np.uint8)
+        img_color[thresh_img == 255] = (bg[2], bg[1], bg[0])
+        img_color[thresh_img == 0] = (fg[2], fg[1], fg[0])
+
+        _, buffer = cv.imencode('.png', img_color)
         encoded = base64.b64encode(buffer).decode('utf-8')
 
         response["image"] = encoded

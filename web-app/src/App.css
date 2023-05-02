@@ -13,14 +13,18 @@
     src: url('./fonts/Lota\ Grotesque\ Bold.otf') format('opentype');
 }
 
+:root {
+    --bg-color: #EDF5E1;
+    --fg-color: #05386B;
+}
+
 * {
     margin: 0;
 }
 
 body {
-    /* background-color: #042825; */
-    background-color: whitesmoke;
-    color: #042825;
+    background-color: var(--bg-color) !important;
+    color: var(--fg-color) !important;
 }
 
 .header {
@@ -28,10 +32,10 @@ body {
     font-size: 3.5rem;
     text-align: left;
     margin-inline: auto;
-    margin-block: 1rem;
+    margin-block: 3rem;
     line-height: 4.7rem;
     letter-spacing: -0.1rem;
-    width: min(90%, 950px);
+    width: min(90%, 1100px);
 
 }
 
@@ -40,31 +44,31 @@ body {
     font-size: 1.7rem;
     margin-inline: auto;
     margin-block: 1rem;
-    width: min(90%, 950px);
+    width: min(90%, 1100px);
     text-align: justify;
 }
 
-.upload-box{
+.upload-box {
     margin-inline: auto;
     font-family: 'Lota Grotesque Regular', sans-serif;
     border-radius: 15px;
-    border: 2px dashed #042825;
+    border: 2px solid var(--fg-color);
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
     gap: 1rem;
 }
 
 #form-file-upload,
-.loader{
+.loader {
     height: 16rem;
     width: 100%;
 }
 
-.loader{
+.loader {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,38 +81,39 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
 }
 
 .upload-button {
     cursor: pointer;
     font-family: 'Lota Grotesque Regular', sans-serif;
-    font-size: 1rem;
-    background-color: white;
-    border: 2px solid #042825;
+    font-size: 1.2rem;
+    background-color: var(--bg-color);
+    border: 2px solid var(--fg-color);
+    color: var(--fg-color);
     border-radius: 10px;
     transition-duration: 300ms;
-    height: 3.7em;
+    height: 3.7rem;
     padding-inline: 1.5rem;
     margin-inline: auto;
+    margin-block: 1rem;
 }
 
 .upload-button:hover {
-    color: whitesmoke;
-    background-color: #042825;
+    color: var(--bg-color);
+    background-color: var(--fg-color);
 }
 
 #input-file-upload {
-  display: none;
+    display: none;
 }
 
-#drawing{
+#drawing {
     object-fit: contain;
     border-radius: 15px;
     height: 12rem;
 }
 
-.result-row{
+.result-row {
     display: flex;
     justify-content: space-around;
     margin: auto;
@@ -117,17 +122,52 @@ body {
     gap: 2rem;
 }
 
-.progress-bar{
+.progress-bar {
     height: 10rem;
     width: 10rem;
     margin-block: auto;
 }
 
-.result-column{
+.result-column {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: auto;
     width: 100%;
     text-align: center;
+}
+
+.example-image-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    gap: 1rem;
+}
+
+#spiral {
+    margin-inline: auto;
+    width: max(30%, 14rem);
+    margin-block: 1rem;
+}
+
+#wave {
+    margin-inline: auto;
+    width: max(40%,19rem);
+    margin-block: 1rem;
+}
+
+.color-path {
+    stroke: white;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
