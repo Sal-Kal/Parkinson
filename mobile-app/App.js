@@ -38,7 +38,6 @@ export default function App() {
       const image = await ImagePicker.launchCameraAsync();
       if (!image.canceled) {
         setViewState("loading");
-        console.log("image taken");
         let formData = new FormData();
         formData.append("image", {
           uri: image.assets[0].uri,
@@ -54,7 +53,6 @@ export default function App() {
             },
           })
           .then((response) => {
-            console.log(response.data);
             setResult(response.data.response);
             setViewState("result");
           })
@@ -79,7 +77,6 @@ export default function App() {
       });
       if (!image.canceled) {
         setViewState("loading");
-        console.log("image taken");
         let formData = new FormData();
         formData.append("image", {
           uri: image.assets[0].uri,
@@ -95,7 +92,6 @@ export default function App() {
             },
           })
           .then((response) => {
-            console.log(response.data);
             setResult(response.data.response);
             setViewState("result");
           })
