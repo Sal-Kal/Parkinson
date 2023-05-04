@@ -15,9 +15,9 @@ const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 export default function Donut({
   percentage = 67,
-  radius = 40,
-  strokeWidth = 10,
-  duration = 500,
+  radius = 90,
+  strokeWidth = 15,
+  duration = 900,
   color = "black",
   delay = 0,
   textColor,
@@ -101,7 +101,7 @@ export default function Donut({
         defaultValue="0"
         style={[
           StyleSheet.absoluteFillObject,
-          { fontSize: radius / 2, color: textColor ?? color },
+          { fontSize: radius / 2.8, color: textColor ?? color },
           styles.text,
         ]}
       />

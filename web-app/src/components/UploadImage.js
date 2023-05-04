@@ -46,7 +46,6 @@ export default function UploadImage() {
 
   // Axios Post Request to the Backend
   const handleFile = async (file) => {
-    console.log(file);
     setLoading(true);
     const formData = new FormData();
     formData.append("image", file);

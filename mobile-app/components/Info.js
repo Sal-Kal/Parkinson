@@ -7,7 +7,11 @@ export default function Info() {
     LotaBold: require("../assets/fonts/Lota-Grotesque-Bold.otf"),
   });
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollBody}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      style={styles.scrollBody}
+    >
       <Text style={styles.heading}>Parkinson's Disease Detection System</Text>
       <Text style={styles.instructionHeading}>Example Images:</Text>
       <View style={styles.exampleWrapper}>
