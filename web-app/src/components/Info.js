@@ -18,7 +18,7 @@ export default function Info() {
       </h3>
       <ol>
         <li>
-          Use a blank sheet of paper and a pencil to draw either a spiral or a
+          Use a blank sheet of paper and a pen to draw either a spiral or a
           wave.
         </li>
         <li>

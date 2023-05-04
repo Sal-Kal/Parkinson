@@ -16,7 +16,7 @@ wave_height = 256
 wave_width = 512
 
 # Reading the Image
-drawing = cv.imread('./test/something.png')
+drawing = cv.imread('./test/test_8.jpg')
 
 # Calculating the Center of the Image
 center = (drawing.shape[1]/2, drawing.shape[0]/2)
@@ -41,6 +41,7 @@ closest = None
 for contour in rects:
     # Find the bounding rectangle for the contour
     x, y, w, h = cv.boundingRect(contour)
+    cv.rectangle(drawing, (x, y), (x+w, y+h), (0, 255, 0), 2)
     rect_area = w * h
     # Skip contour if area of the contour is more than or equal to 80% of the image
     if rect_area >= threshold_area:
@@ -86,5 +87,6 @@ if prediction > 0.5:
 else:
    print('Healthy')
 
-cv.imshow('Given Image', crop_img)
+# cv.imshow('Given Image', crop_img)
+cv.imshow('Given Image', drawing)
 cv.waitKey(0)

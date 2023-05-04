@@ -158,10 +158,6 @@ body {
     margin-block: 1rem;
 }
 
-.color-path {
-    stroke: white;
-}
-
 @keyframes fade-in {
     from {
         opacity: 0;

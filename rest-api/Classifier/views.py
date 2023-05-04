@@ -28,14 +28,14 @@ def classify(request):
             bg = bg.split()
             bg = [int(x) for x in bg]
         else:
-            bg = [0, 0, 0]
+            bg = [255, 255, 255]
 
         if "fg" in request.data:
             fg = request.data["fg"]
             fg = fg.split()
             fg = [int(x) for x in fg]
         else:
-            fg = [255, 255, 255]
+            fg = [0, 0, 0]
 
         nparr = np.frombuffer(image, np.uint8)
         drawing = cv.imdecode(nparr, cv.IMREAD_COLOR)
@@ -91,9 +91,11 @@ def classify(request):
         # Checking if the image is more likely to be a spiral or a wave
         if aspect_ratio >= 1.7:
             crop_img = cv.resize(crop_img, (wave_width, wave_height))
+            print(aspect_ratio)
             is_spiral = 0
         else:
             crop_img = cv.resize(crop_img, (spiral_width, spiral_height))
+            print(aspect_ratio)
             is_spiral = 1
 
         processed = tf.image.resize(cv.cvtColor(crop_img, cv.COLOR_BGR2RGB), (256, 256))
