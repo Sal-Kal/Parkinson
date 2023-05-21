@@ -38,11 +38,12 @@ export default function Info() {
       <br />
       <UploadImage />
       <br />
-      Disclaimer: Please note that the hand-drawn image test is not a substitute
+      <br />
+      {/* Disclaimer: Please note that the hand-drawn image test is not a substitute
       for a medical diagnosis. If you have concerns about your health, please
       consult with your doctor or healthcare provider. The hand-drawn image test
       is intended for informational purposes only and is not a medical advice or
-      diagnosis.
+      diagnosis. */}
     </div>
   );
 }

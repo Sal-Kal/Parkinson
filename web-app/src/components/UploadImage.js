@@ -58,6 +58,7 @@ export default function UploadImage() {
         setBoxState("result");
         setTimeout(() => {
           setResult(res.data.response);
+          console.log(res.data.response.image);
         }, 500);
       });
     } catch (err) {
@@ -119,7 +120,7 @@ export default function UploadImage() {
     case "example":
       return (
         <div className="upload-box">
-          Try your best to draw one of the two shown below
+          Draw either a spiral or a wave as shown below
           <div className="example-image-container">
             <img src={Spiral} alt="spiral" id="spiral" className="color-path" />
             <img

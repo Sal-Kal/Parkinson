@@ -10,6 +10,7 @@ export default function Info() {
     <ScrollView
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
+      overScrollMode="never"
       style={styles.scrollBody}
     >
       <Text style={styles.heading}>Parkinson's Disease Detection System</Text>
@@ -37,10 +38,7 @@ export default function Info() {
         4. Wait for the image to upload and for the test to complete.
       </Text>
       <Text style={styles.instruction}>
-        5. Wait for the image to upload and for the test to complete.
-      </Text>
-      <Text style={styles.instruction}>
-        6. The test will show you a score between 0 and 100. If the score is
+        5. The test will show you a score between 0 and 100. If the score is
         below 50, it may indicate early symptoms of Parkinson's disease.
       </Text>
       <View style={styles.bottomOffset}></View>

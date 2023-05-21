@@ -17,11 +17,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 import { faUpload } from "@fortawesome/free-solid-svg-icons/faUpload";
 import { faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons/faArrowRotateLeft";
-import CircularProgress from "react-native-circular-progress-indicator";
 import Donut from "./components/DonutChart";
 
 const bgColor = "#EDF5E1";
 const fgColor = "black";
+const backUrl = "http://10.20.58.240:8000/classify/";
 
 export default function App() {
   const fonts = useFonts({
@@ -47,7 +47,7 @@ export default function App() {
         formData.append("bg", "237 245 225");
         formData.append("fg", "0 0 0");
         axios
-          .post("http://192.168.43.140:8000/classify/", formData, {
+          .post(backUrl, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -72,7 +72,7 @@ export default function App() {
       const image = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
-        aspect: [5, 5],
+        aspect: [11, 16],
         quality: 1,
       });
       if (!image.canceled) {
@@ -86,7 +86,7 @@ export default function App() {
         formData.append("bg", "237 245 225");
         formData.append("fg", "0 0 0");
         axios
-          .post("http://192.168.43.140:8000/classify/", formData, {
+          .post(backUrl, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -145,7 +145,7 @@ export default function App() {
               <Donut percentage={result.score} />
               <Text style={styles.resultHeading}>Detected Image:</Text>
               <Image
-                style={styles.image}
+                style={styles[result.shape]}
                 source={{
                   uri: `data:image/png;base64,${result.image}`,
                 }}
@@ -203,9 +203,13 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: "Lota",
   },
-  image: {
-    height: 170,
-    width: 170,
+  Wave: {
+    height: 100,
+    width: 200,
+  },
+  Spiral: {
+    height: 150,
+    width: 150,
   },
   scrollBody: {
     marginTop: 20,
